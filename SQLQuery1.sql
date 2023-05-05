@@ -23,11 +23,13 @@ GO
 ------------------------------
 CREATE PROCEDURE usp_InsertProduct
 @Name NVARCHAR(50),
-@Price INT
+@Price INT,
+@ProductID INT OUTPUT
 AS
 BEGIN
 	INSERT INTO Products(Name, Price)
 	VALUES(@Name, @Price)
+	SET @ProductID = SCOPE_IDENTITY()
 END
 GO
 ----------------------------------
