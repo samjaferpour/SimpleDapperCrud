@@ -7,6 +7,7 @@ namespace SimpleDapperExample.Repositories
         List<Product> GetAll();
         Product GetById(int id);
         void Insert(Product product);
+        int InsertWithSP(Product product);
         void Delete(int id);
         void Update(Product product);
 

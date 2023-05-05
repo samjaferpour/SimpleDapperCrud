@@ -52,6 +52,21 @@ namespace SimpleDapperExample.Repositories
             }
         }
 
+        public int InsertWithSP(Product product)
+        {
+            using (var conn = new SqlConnection(conStr))
+            {
+                var command = "usp_InsertProduct";
+                var parameters = new DynamicParameters();
+                parameters.Add("Name", product.Name);
+                parameters.Add("Price", product.Price);
+                parameters.Add("ProductId", dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
+                conn.Execute(command, parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var productId = parameters.Get<Int32>("ProductId");
+                return productId;
+            }
+        }
+
         public void Update(Product product)
         {
             using (var conn = new SqlConnection(conStr))

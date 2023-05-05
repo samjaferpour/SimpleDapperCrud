@@ -33,6 +33,12 @@ namespace SimpleDapperExample.Controllers
             _productRepository.Insert(product);
             return Ok("Added successfully");
         }  
+        [HttpPost]
+        public IActionResult AddProductWithSp([FromBody] Product product)
+        {
+            _productRepository.InsertWithSP(product);
+            return Ok("Added successfully");
+        }  
         [HttpPut]
         public IActionResult EditProduct([FromBody] Product product)
         {
